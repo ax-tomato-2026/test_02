@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>THE INVITATION | Premium Dating</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Pretendard:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="mobile-app">
+        <!-- Home View -->
+        <main id="view-home" class="view view-active">
+            <div class="glow-bg"></div>
+            <h1 class="brand-title">THE INVITATION</h1>
+            <p class="brand-subtitle">지인 추천 기반 프라이빗 매칭</p>
+            <div class="auth-buttons">
+                <!-- 단순 시연용 임시 로그인 폼 -->
+                <input type="tel" id="login-phone" class="input-minimal" placeholder="가입된 연락처 (예: 01012345678)">
+                <button class="btn btn-outline" onclick="app.login()">기존 회원 로그인</button>
+                <div class="divider"><span>OR</span></div>
+                <button class="btn btn-filled" onclick="app.navigate('signup')">초대코드로 가입하기</button>
+            </div>
+        </main>
+
+        <!-- Signup View -->
+        <main id="view-signup" class="view">
+            <header class="app-header">
+                <button class="back-btn" onclick="app.navigate('home')">← 뒤로</button>
+                <h2>가입 신청</h2>
+            </header>
+            <form id="signup-form" class="form-container">
+                <p class="form-notice">가입 심사를 위해 아래 정보를 정확히 입력해 주세요.</p>
+                <div class="form-group">
+                    <label>초대 코드 (Referral Code)</label>
+                    <input type="text" id="su-referral" required placeholder="영문/숫자 코드 입력">
+                </div>
+                <div class="form-group">
+                    <label>연락처 (인증용)</label>
+                    <input type="tel" id="su-phone" required placeholder="010-0000-0000">
+                </div>
+                <div class="form-group">
+                    <label>성별</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="gender" value="M" required> 남성</label>
+                        <label><input type="radio" name="gender" value="F" required> 여성</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>생년월일</label>
+                    <input type="date" id="su-birth" required>
+                </div>
+                <div class="form-group">
+                    <label>거주지</label>
+                    <input type="text" id="su-location" required placeholder="예: 서울시 강남구">
+                </div>
+                <div class="form-group">
+                    <label>직장 및 직무 / 사업장</label>
+                    <input type="text" id="su-occupation" required placeholder="예: 대기업 마케터, 변호사, 사업가 등">
+                </div>
+                <button type="submit" class="btn btn-filled form-submit">가입 승인 요청 (완료)</button>
+            </form>
+        </main>
+
+        <!-- Explore View (Calendar & Match List) -->
+        <main id="view-explore" class="view">
+            <header class="app-header">
+                <h2>프라이빗 라운지</h2>
+                <button class="logout-btn" onclick="app.logout()">로그아웃</button>
+            </header>
+            <div class="calendar-wrapper">
+                <div class="calendar-header">
+                    <button id="cal-prev">◀</button>
+                    <h3 id="cal-month-title">2026. 04</h3>
+                    <button id="cal-next">▶</button>
+                </div>
+                <div class="calendar-grid-header">
+                    <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+                </div>
+                <div class="calendar-grid" id="cal-grid"></div>
+            </div>
+            
+            <div class="date-details">
+                <div class="date-title-row">
+                    <h3 id="selected-date-title">날짜를 선택하세요</h3>
+                    <button id="toggle-my-avail-btn" class="btn btn-outline small-btn" style="display:none;">✔ 나도 만날 수 있음</button>
+                </div>
+                <div id="match-list" class="match-list">
+                    <p class="empty-state">해당 날짜에 일정을 등록한 상대를 확인하려면 달력의 날짜를 터치하세요.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Supabase SDK 및 App 로직 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
