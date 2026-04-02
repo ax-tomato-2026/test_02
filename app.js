@@ -213,7 +213,7 @@ app.selectDate = async function(dStr) {
         .select(`
             user_id,
             premium_users!inner(
-                id, gender, birth_date, location, occupation
+                id, gender, birth_date, location, occupation, phone
             )
         `)
         .eq('date', selectedDateStr)
@@ -238,9 +238,26 @@ app.selectDate = async function(dStr) {
                 </div>
                 <div class="match-detail">📍 ${u.location}</div>
                 <div class="match-detail">성별: ${u.gender === 'F' ? '여성' : '남성'}</div>
+                <button class="btn btn-outline small-btn contact-btn" onclick="app.showContact('${item.user_id}', '${u.phone}')">연락처 및 호감 보내기</button>
+                <div id="contact-${item.user_id}" class="contact-info" style="display:none;"></div>
             </div>
         `;
     });
+};
+
+app.showContact = function(userId, phone) {
+    const infoDiv = document.getElementById(`contact-${userId}`);
+    if(infoDiv.style.display === 'none') {
+        infoDiv.style.display = 'block';
+        infoDiv.innerHTML = `
+            <div class="contact-actions">
+                <a href="tel:${phone}" class="btn btn-filled small-btn">📞 통화 연결</a>
+                <a href="sms:${phone}" class="btn btn-filled small-btn">✉️ 문자 메시지</a>
+            </div>
+            <p class="contact-number">${phone}</p>
+        `;
+        infoDiv.previousElementSibling.style.display = 'none';
+    }
 };
 
 document.getElementById('toggle-my-avail-btn').addEventListener('click', async () => {

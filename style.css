@@ -228,3 +228,10 @@ body {
 .match-age { background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; }
 .match-detail { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 6px; display: flex; align-items: center; gap: 8px;}
 .empty-state { color: var(--text-secondary); text-align: center; padding: 50px 20px; font-size: 0.95rem; line-height: 1.6; background: var(--surface-color); border-radius: 8px; border: 1px dashed var(--border-color); }
+
+/* Contact Reveal */
+.contact-btn { margin-top: 16px; width: 100%; border-color: rgba(255,255,255,0.2) !important; font-weight: 400; font-size: 0.9rem;}
+.contact-info { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--border-color); text-align: center; animation: fadeIn 0.3s; }
+.contact-actions { display: flex; gap: 10px; margin-bottom: 12px; }
+.contact-actions a { flex: 1; text-decoration: none; text-align: center; font-size: 0.85rem; padding: 12px 0; }
+.contact-number { font-size: 1.15rem; font-weight: 600; letter-spacing: 2px; color: white; display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.05); border-radius: 6px; }
